@@ -41,7 +41,7 @@ func main() {
 		tsFileName := args[0]
 		jsFileName := strings.TrimSuffix(tsFileName, ".ts") + ".js"
 
-		_ := runCommand("tsc", tsFileName)
+		_ = runCommand("tsc", tsFileName)
 
 		nodeCmdOut := runCommand("node", jsFileName)
 		fmt.Println(nodeCmdOut)
