@@ -43,8 +43,10 @@ func main() {
 		jsFileName := strings.TrimSuffix(tsFileName, ".ts") + ".js"
 
 		_, err := os.Stat(jsFileName)
+        // If the js file is not found
 		if err != nil && errors.Is(err, os.ErrNotExist) {
-			_ = runCommand("tsc", tsFileName)
+			tscCmdOut := runCommand("tsc", "--noEmitOnError", tsFileName)
+			fmt.Println(tscCmdOut)
 		}
 
 		nodeCmdOut := runCommand("node", jsFileName)
