@@ -49,7 +49,12 @@ func main() {
 			fmt.Println(tscCmdOut)
 		}
 
-		nodeCmdOut := runCommand("node", jsFileName)
-		fmt.Println(nodeCmdOut)
+        // If the js file is found
+        // This check is done again because tsc may not generate js file,
+        // if the ts file contains any error.
+        if !errors.Is(err, os.ErrNotExist) {
+            nodeCmdOut := runCommand("node", jsFileName)
+            fmt.Println(nodeCmdOut)
+        }
 	}
 }
